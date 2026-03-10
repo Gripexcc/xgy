@@ -257,76 +257,55 @@
         }
 
         .subject-input input {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 14px;
+            transition: all 0.3s;
         }
 
         .subject-input input:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
 
-        /* 高中推荐样式 */
-        .schools-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        .subjects-total {
             margin-top: 15px;
+            padding: 12px 15px;
+            background: linear-gradient(135deg, #3498db 0%, #f39c12 100%);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* 学校卡片样式 */
+        .school-list {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 10px;
+            width: 100%;
         }
 
         .school-card {
             background: white;
+            padding: 10px;
             border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e0e0e0;
+            border: 2px solid #3498db;
+            position: relative;
+            flex: 1;
+            min-width: 200px;
+            max-width: calc(33.333% - 7px);
         }
 
-        .school-header {
+        .school-rank {
+            position: absolute;
+            top: -8px;
+            left: 15px;
             background: linear-gradient(135deg, #3498db 0%, #f39c12 100%);
             color: white;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .school-header h4 {
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .school-content {
-            padding: 12px;
-        }
-
-        .school-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-        }
-
-        .school-stat {
-            text-align: center;
-            flex: 1;
-        }
-
-        .school-stat .label {
-            font-size: 10px;
-            color: #666;
-            margin-bottom: 2px;
-        }
-
-        .school-stat .value {
-            font-size: 14px;
-            font-weight: bold;
-            color: #333;
-        }
-
-        .recommendation {
-            background: #d4edda;
-            color: #155724;
             padding: 4px 12px;
             border-radius: 12px;
             font-size: 11px;
@@ -577,29 +556,29 @@
         }
 
         .step-base {
-            width: 100%;
+            width: 90%;
             background: #f0f0f0;
             border-radius: 4px 4px 0 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-end;
             padding: 10px;
-            text-align: center;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .step-base.needs-improvement {
-            background: #ffcccc;
-        }
-
-        .step-base.good {
-            background: #ffffcc;
+            border: 1px solid #ddd;
         }
 
         .step-base.excellent {
-            background: #ccffcc;
+            background: #d4edda;
+            border-color: #28a745;
+        }
+
+        .step-base.good {
+            background: #fff3cd;
+            border-color: #ffc107;
+        }
+
+        .step-base.needs-improvement {
+            background: #f8d7da;
+            border-color: #dc3545;
         }
 
         .step-base.current-step {
@@ -608,47 +587,36 @@
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
         }
 
+        .step-label {
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .step-level {
+            font-size: 10px;
+            text-align: center;
+        }
+
         .step-emoji {
             font-size: 20px;
             margin-bottom: 5px;
         }
 
-        .step-label {
-            font-size: 11px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 3px;
-        }
-
-        .step-level {
-            font-size: 10px;
-            color: #666;
-        }
-
         .current-position {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        .position-arrow {
-            width: 0;
-            height: 0;
-            border-left: 10px solid transparent;
-            border-right: 10px solid transparent;
-            border-bottom: 10px solid #3498db;
-            margin: 0 auto 5px;
-        }
-
-        .position-text {
-            background: #3498db;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            font-size: 12px;
+            background: none;
+            border: none;
+            color: #333;
+            padding: 0;
+            border-radius: 0;
+            font-size: 24px;
             font-weight: bold;
+            box-shadow: none;
+            z-index: 10;
+            text-align: center;
+            transform: translate(-50%, -100%);
         }
 
         .positioning-note {
@@ -770,97 +738,105 @@
             position: relative;
         }
 
-        .subject-target {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: #27ae60;
-            color: white;
+        .improvement-target {
+            background: #e3f2fd;
+            padding: 8px;
+            border-radius: 4px;
+            margin-top: 8px;
+            border-left: 3px solid #2196f3;
+        }
+
+        .improvement-target h4 {
+            font-size: 12px;
+            color: #1976d2;
+            margin-bottom: 4px;
+        }
+
+        .improvement-target p {
+            font-size: 11px;
+            color: #333;
+            line-height: 1.4;
+        }
+        
+        .target-scores {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .target-scores span {
+            background: #f0f8ff;
             padding: 4px 8px;
             border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
+            border: 1px solid #3498db;
         }
 
-        /* 搜索框样式 */
-        .search-container {
-            position: relative;
-            margin-bottom: 10px;
-        }
+        @media (max-width: 768px) {
+            .content {
+                padding: 20px;
+            }
 
-        .search-input {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #e0e0e0;
-            border-radius: 4px;
-            font-size: 14px;
-        }
+            .score-row {
+                flex-direction: column;
+            }
 
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 0 0 4px 4px;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
+            .percentage-display {
+                width: 100%;
+                margin-top: 10px;
+            }
 
-        .search-result-item {
-            padding: 8px 12px;
-            cursor: pointer;
-        }
+            .subjects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-        .search-result-item:hover {
-            background: #f0f0f0;
-        }
+            .school-stats {
+                grid-template-columns: 1fr;
+            }
 
-        /* 目标分数样式 */
-        .target-score {
-            display: inline-block;
-            background: #27ae60;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-left: 10px;
+            .subjects-analysis {
+                grid-template-columns: 1fr;
+            }
+
+            .evaluation-result {
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>升学规划报告</h1>
+            <h1>🎓 升学规划报告</h1>
             <p>为初三学生量身定制的升学指导方案</p>
         </div>
-        
+
         <div class="content">
-            <!-- 编辑部分 -->
-            <div class="section active" id="editSection">
-                <h2>编辑信息</h2>
-                
+            <div id="editSection" class="section active">
                 <div class="form-group">
-                    <label>学生姓名</label>
+                    <label>姓名（选填）</label>
                     <input type="text" id="studentName" placeholder="请输入学生姓名">
                 </div>
-                
+
                 <div class="form-group">
-                    <label>当前学校</label>
-                    <input type="text" id="currentSchool" placeholder="请输入当前学校">
+                    <label>当前学校（选填）</label>
+                    <input type="text" id="currentSchool" placeholder="请输入当前所在学校">
                 </div>
-                
+
                 <div class="form-group">
                     <label>省份</label>
                     <select id="province" onchange="updateCities()">
                         <option value="">请选择省份</option>
                     </select>
                 </div>
-                
+
                 <div class="form-group">
                     <label>城市</label>
                     <select id="city" onchange="updateSchools()">
@@ -939,7 +915,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>其他科目成绩</label>
+                    <label>其他科目成绩（选填）</label>
                     <div class="subjects-grid">
                         <div class="subject-input">
                             <span>道德与法治</span>
@@ -958,38 +934,35 @@
                             <input type="number" id="subject-physics" placeholder="0" oninput="updateSubjectTotal()">
                         </div>
                         <div class="subject-input">
-                            <span>化学</span>
-                            <input type="number" id="subject-chemistry" placeholder="0" oninput="updateSubjectTotal()">
-                        </div>
-                        <div class="subject-input">
                             <span>生物</span>
                             <input type="number" id="subject-biology" placeholder="0" oninput="updateSubjectTotal()">
                         </div>
+                        <div class="subject-input">
+                            <span>化学</span>
+                            <input type="number" id="subject-chemistry" placeholder="0" oninput="updateSubjectTotal()">
+                        </div>
                     </div>
+                    <div class="subjects-total">各科总分：<span id="subjects-total-score">0</span></div>
                 </div>
 
                 <div class="form-group">
-                    <label>升学规划建议</label>
-                    <textarea id="comment" placeholder="请输入升学规划建议"></textarea>
+                    <label>评语（销售自行填写，不需要可留空）</label>
+                    <textarea id="comment" placeholder="请输入对学生的评语..."></textarea>
                 </div>
-                
+
                 <div class="button-group">
                     <button class="btn" onclick="generateReport()">生成报告</button>
                 </div>
             </div>
-            
-            <!-- 报告部分 -->
-            <div class="section" id="reportSection">
-                <div class="report-header">
-                    <h2>升学规划报告</h2>
-                    <p class="subtitle">为初三学生量身定制的升学指导方案</p>
-                </div>
-                
+
+            <div id="reportSection" class="section">
+
+
                 <div class="report-section">
                     <h3>基本信息</h3>
                     <div class="info-grid">
                         <div class="info-item">
-                            <div class="label">学生姓名</div>
+                            <div class="label">姓名</div>
                             <div class="value" id="reportName">-</div>
                         </div>
                         <div class="info-item">
@@ -997,53 +970,35 @@
                             <div class="value" id="reportCurrentSchool">-</div>
                         </div>
                         <div class="info-item">
-                            <div class="label">所在地区</div>
-                            <div class="value" id="reportLocation">-</div>
+                            <div class="label">省份</div>
+                            <div class="value" id="reportProvince">-</div>
                         </div>
                         <div class="info-item">
-                            <div class="label">考试成绩</div>
+                            <div class="label">城市</div>
+                            <div class="value" id="reportCity">-</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="label">成绩</div>
                             <div class="value" id="reportScore">-</div>
                         </div>
                         <div class="info-item">
                             <div class="label">成绩占比</div>
                             <div class="value" id="reportPercentage">-</div>
                         </div>
-                        <div class="info-item">
-                            <div class="label">评估时间</div>
-                            <div class="value" id="reportTime">-</div>
-                        </div>
                     </div>
                 </div>
 
                 <div class="report-section">
                     <h3>成绩定位</h3>
-                    <div class="positioning-card">
-                        <div class="positioning-header">
-                            <h4>成绩定位分析</h4>
-                        </div>
-                        <div class="positioning-text">
-                            根据您的成绩占比，我们为您匹配了当前可上的高中类型。以下是您的成绩在升学阶梯中的位置：
-                        </div>
-                        <div id="reportPositioning">
-                            <!-- 动态生成成绩定位 -->
-                        </div>
-                        <div class="positioning-note">
-                            注：本定位仅供参考，实际录取情况可能因当年考试难度、报考人数等因素而有所不同。
-                        </div>
+                    <div id="reportPositioning" class="positioning-card">
+                        <!-- 动态生成成绩定位 -->
                     </div>
                 </div>
 
                 <div class="report-section" id="subjectsSection">
                     <h3>各科成绩分析</h3>
                     <div id="reportSubjects">
-                        <!-- 动态生成各科成绩分析 -->
-                    </div>
-                </div>
-
-                <div class="report-section">
-                    <h3>本地院校</h3>
-                    <div id="reportSchools">
-                        <!-- 动态生成高中推荐表格 -->
+                        <!-- 动态生成各科成绩和建议 -->
                     </div>
                 </div>
 
@@ -1056,6 +1011,13 @@
                         </div>
                         <div class="evaluation-result" id="evaluationResult">-</div>
                         <div class="evaluation-advice" id="evaluationAdvice">-</div>
+                    </div>
+                </div>
+
+                <div class="report-section">
+                    <h3>本地院校</h3>
+                    <div id="reportSchools">
+                        <!-- 动态生成高中推荐表格 -->
                     </div>
                 </div>
 
@@ -1091,19 +1053,49 @@
         // 各科建议模板
         const subjectAdvice = {
             chinese: {
-                low: "1. 熟悉诗歌特点，向老师请教一些解读诗歌的技巧，运用有效方法学会感知诗词大意\n2. 拓展课外诗词阅读量，尤其是多去练习和钻研一些经典篇目\n3. 阅读老师给到的补充资料，增加文学和文化常识积累",
-                medium: "1. 熟悉诗歌特点，向老师请教一些解读诗歌的技巧，运用有效方法学会感知诗词大意\n2. 拓展课外诗词阅读量，尤其是多去练习和钻研一些经典篇目\n3. 阅读老师给到的补充资料，增加文学和文化常识积累",
-                high: "1. 熟悉诗歌特点，向老师请教一些解读诗歌的技巧，运用有效方法学会感知诗词大意\n2. 拓展课外诗词阅读量，尤其是多去练习和钻研一些经典篇目\n3. 阅读老师给到的补充资料，增加文学和文化常识积累"
+                high: "语文成绩优秀，基础知识扎实。建议继续保持阅读习惯，多积累作文素材，争取在作文和阅读理解上取得更高分。",
+                medium: "语文成绩中等，有一定的基础。建议加强古诗文背诵，提升阅读理解能力，注意作文结构训练。",
+                low: "语文成绩需要提升，建议从基础抓起。多背诵古诗文，增加课外阅读量，练习写作，提高语言表达能力。"
             },
             math: {
-                low: "1. 回归课本，落实好基本定义；\n2. 结合相似图形，理解同角的三角函数的值与图形边长的关系（回归课本），理解互余角的三角函数值的关系；\n3. 多练习解三角形的基础题，只有基础题会做了，才会解决更难的图形计算问题。",
-                medium: "1. 回归课本，落实好基本定义；\n2. 结合相似图形，理解同角的三角函数的值与图形边长的关系（回归课本），理解互余角的三角函数值的关系；\n3. 多练习解三角形的基础题，只有基础题会做了，才会解决更难的图形计算问题。",
-                high: "1. 回归课本，落实好基本定义；\n2. 结合相似图形，理解同角的三角函数的值与图形边长的关系（回归课本），理解互余角的三角函数值的关系；\n3. 多练习解三角形的基础题，只有基础题会做了，才会解决更难的图形计算问题。"
+                high: "数学成绩优秀，逻辑思维能力较强。建议挑战更高难度的题目，参加数学竞赛，为高中数学打下坚实基础。",
+                medium: "数学成绩中等，掌握基本知识点。建议加强错题整理，重点突破几何和函数，提高解题速度和准确率。",
+                low: "数学成绩需要提升，建议回归课本，夯实基础。从基础题做起，逐步提升，必要时可以寻求老师或家教帮助。"
             },
             english: {
-                low: "1. 跟随专业老师系统学习阅读理解解题思路和技巧,提升做题正确率和效率;\n2. 通过系统学习长难句的拆分、答案句的标记识别主次信息，获得精准锁定答案线索的能力，基本达到60-70%的准确率。",
-                medium: "1. 跟随专业老师系统学习阅读理解解题思路和技巧,提升做题正确率和效率;\n2. 通过系统学习长难句的拆分、答案句的标记识别主次信息，获得精准锁定答案线索的能力，基本达到60-70%的准确率。",
-                high: "1. 跟随专业老师系统学习阅读理解解题思路和技巧,提升做题正确率和效率;\n2. 通过系统学习长难句的拆分、答案句的标记识别主次信息，获得精准锁定答案线索的能力，基本达到60-70%的准确率。"
+                high: "英语成绩优秀，语言天赋较好。建议扩大词汇量，多阅读英文原著，提升听说能力，为高中英语学习做好准备。",
+                medium: "英语成绩中等，有一定的语言基础。建议加强单词记忆，多练习听力，注重语法学习，提高阅读理解能力。",
+                low: "英语成绩需要提升，建议从单词和基础语法开始。每天坚持背单词，多听英语材料，培养语感，逐步提升成绩。"
+            },
+            politics: {
+                high: "道德与法治成绩优秀，对时事政治关注度高。建议继续保持对社会热点的关注，培养批判性思维。",
+                medium: "道德与法治成绩中等，掌握基本知识点。建议多关注时事新闻，理解记忆重要概念，提高分析能力。",
+                low: "道德与法治成绩需要提升，建议认真背诵课本知识点，多关注社会热点，理解基本概念和原理。"
+            },
+            history: {
+                high: "历史成绩优秀，对历史知识掌握扎实。建议继续深入阅读历史书籍，培养历史思维，建立完整的历史知识体系。",
+                medium: "历史成绩中等，了解基本历史脉络。建议加强时间轴记忆，理解历史事件的因果关系，多做练习题。",
+                low: "历史成绩需要提升，建议从基础历史知识抓起。制作时间轴，记忆重要历史事件，理解历史发展规律。"
+            },
+            geography: {
+                high: "地理成绩优秀，空间思维能力较强。建议多关注地理现象，结合地图学习，培养地理实践力。",
+                medium: "地理成绩中等，掌握基本地理知识。建议加强地图识读能力，理解地理原理，多做图文结合的练习。",
+                low: "地理成绩需要提升，建议从地图入手，记忆重要地理事物位置，理解基本地理概念和原理。"
+            },
+            physics: {
+                high: "物理成绩优秀，理科思维能力强。建议多做实验，深入理解物理原理，为高中物理学习做好准备。",
+                medium: "物理成绩中等，掌握基本物理概念。建议加强公式理解和应用，多做计算题，培养物理思维。",
+                low: "物理成绩需要提升，建议从基础概念抓起。理解基本物理原理，多做基础题，逐步建立物理思维。"
+            },
+            biology: {
+                high: "生物成绩优秀，对生命现象观察细致。建议多关注生物实验，理解生命活动规律，培养科学探究精神。",
+                medium: "生物成绩中等，了解基本生物知识。建议加强图表分析能力，记忆重要概念，理解生命活动过程。",
+                low: "生物成绩需要提升，建议从课本基础知识抓起。记忆重要概念，观察生物现象，培养对生物学科的兴趣。"
+            },
+            chemistry: {
+                high: "化学成绩优秀，实验观察能力强。建议多进行化学实验，理解化学反应原理，为高中化学打好基础。",
+                medium: "化学成绩中等，掌握基本化学知识。建议记忆化学方程式，理解化学反应原理，多做计算题。",
+                low: "化学成绩需要提升，建议从基础概念和化学方程式抓起。理解化学反应原理，记忆元素周期表。"
             }
         };
 
@@ -1111,12 +1103,10 @@
             const province = document.getElementById('province').value;
             const citySelect = document.getElementById('city');
             
-            // 清空城市选择
             citySelect.innerHTML = '<option value="">请选择城市</option>';
             
             if (province && data.provinces[province]) {
-                const cities = data.provinces[province].cities;
-                cities.forEach(city => {
+                data.provinces[province].cities.forEach(city => {
                     const option = document.createElement('option');
                     option.value = city;
                     option.textContent = city;
@@ -1170,7 +1160,12 @@
         function calculatePercentage() {
             const score = parseFloat(document.getElementById('score').value) || 0;
             const totalScore = parseFloat(document.getElementById('totalScore').value) || 0;
-            const percentage = totalScore > 0 ? (score / totalScore * 100).toFixed(1) : 0;
+            
+            let percentage = 0;
+            if (totalScore > 0) {
+                percentage = (score / totalScore * 100).toFixed(1);
+            }
+            
             document.getElementById('percentage').textContent = percentage + '%';
         }
 
@@ -1293,22 +1288,21 @@
                 positionIndex = 0;
             }
             
-            // 定义阶梯数据
+            // 台阶数据
             const steps = [
                 { label: '职业高中', level: '本科院校基本无缘', className: 'needs-improvement', height: '20%' },
-                { label: '区县高中', level: '专科院校居多', className: 'needs-improvement', height: '40%' },
-                { label: '市普通高中', level: '本科率60%左右', className: 'good', height: '60%' },
-                { label: '市重点高中', level: '大学上线率70%以上', className: 'good', height: '70%' },
+                { label: '区县高中', level: '专科院校居多', className: 'needs-improvement', height: '35%' },
+                { label: '市普通高中', level: '本科率60%左右', className: 'good', height: '50%' },
+                { label: '市重点高中', level: '大学上线率70%以上', className: 'good', height: '65%' },
                 { label: '省重点普通班', level: '保底一本院校', className: 'excellent', height: '85%' },
                 { label: '省重点重点班', level: '保底985/211', className: 'excellent', height: '100%' }
             ];
             
-            // 生成阶梯HTML
             let stepsHTML = '';
             const emojis = ['😢', '😟', '😊', '😄', '🤩', '🌟'];
             steps.forEach((step, index) => {
                 const isCurrentStep = index === positionIndex;
-                const currentEmoji = isCurrentStep ? '😁' : emojis[index];
+                const currentEmoji = isCurrentStep ? '🏃‍♂️‍➡️' : emojis[index];
                 const emojiSize = isCurrentStep ? '28px' : '20px';
                 const labelWeight = isCurrentStep ? 'bold' : '600';
                 const labelSize = isCurrentStep ? '12px' : '11px';
@@ -1323,208 +1317,19 @@
                 `;
             });
             
-            container.innerHTML = `
+            const positioningHTML = `
+                <div class="positioning-text">
+                    <p>孩子的当前成绩是${scoreValue}分，得分率是${percentage}%，按照目前的成绩可以上${positionText}，总体在${percentageValue >= 85 ? '中等偏上' : percentageValue >= 65 ? '中等' : '中等偏下'}的水平，${percentageValue >= 85 ? '继续保持！' : percentageValue >= 65 ? '继续努力！' : '需要加油！'}</p>
+                </div>
                 <div class="positioning-ladder">
                     ${stepsHTML}
                 </div>
-                <div style="text-align: center; margin-top: 20px;">
-                    <div style="font-size: 16px; font-weight: bold; color: #3498db;">${positionText}</div>
-                    <div style="font-size: 14px; color: #666; margin-top: 5px;">${levelText}</div>
+                <div class="positioning-note">
+                    *中学等级评定需遵循当地实际情况，详细结果建议与学业诊断师取得联系哦！
                 </div>
             `;
-        }
-
-        function generateSubjectsReport() {
-            const container = document.getElementById('reportSubjects');
-            container.innerHTML = '';
             
-            const subjectsData = [
-                { id: 'chinese', name: '语文' },
-                { id: 'math', name: '数学' },
-                { id: 'english', name: '外语' },
-                { id: 'politics', name: '道德与法治' },
-                { id: 'history', name: '历史' },
-                { id: 'geography', name: '地理' },
-                { id: 'physics', name: '物理' },
-                { id: 'chemistry', name: '化学' },
-                { id: 'biology', name: '生物' }
-            ];
-            
-            let hasData = false;
-            let subjectsHTML = '';
-            
-            subjectsData.forEach(subject => {
-                const score = parseFloat(document.getElementById('subject-' + subject.id).value) || 0;
-                const totalScore = parseFloat(document.getElementById('subject-' + subject.id + '-total').value) || 100;
-                
-                if (score > 0) {
-                    hasData = true;
-                    const percentage = (score / totalScore * 100).toFixed(1);
-                    
-                    // 获取提分建议
-                    let advice = '';
-                    if (subjectAdvice[subject.id]) {
-                        const rate = score / totalScore;
-                        if (rate >= 0.85) {
-                            advice = subjectAdvice[subject.id].high;
-                        } else if (rate >= 0.65) {
-                            advice = subjectAdvice[subject.id].medium;
-                        } else {
-                            advice = subjectAdvice[subject.id].low;
-                        }
-                    }
-                    
-                    // 计算目标分数
-                    let targetScore = '';
-                    if (['chinese', 'math', 'english'].includes(subject.id)) {
-                        targetScore = calculateTargetScore(subject.id, score, totalScore);
-                    }
-                    
-                    let targetHTML = '';
-                    if (targetScore) {
-                        targetHTML = `<div class="target-score">目标: ${targetScore}</div>`;
-                    }
-                    
-                    subjectsHTML += `
-                        <div class="subject-card">
-                            <div class="subject-header">
-                                <div class="subject-name">${subject.name}</div>
-                                <div class="subject-score">${score} / ${totalScore}</div>
-                                ${targetHTML}
-                            </div>
-                            <div class="subject-advice">${advice}</div>
-                        </div>
-                    `;
-                }
-            });
-            
-            if (hasData) {
-                container.innerHTML = subjectsHTML;
-            }
-            
-            return hasData;
-        }
-
-        function calculateTargetScore(subjectId, currentScore, totalScore) {
-            // 根据不同科目和满分计算目标分数
-            if (totalScore === 100) {
-                if (subjectId === 'chinese') {
-                    if (currentScore < 60) return 70;
-                    if (currentScore < 70) return 80;
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 90) return 95;
-                    if (currentScore < 95) return 96;
-                    if (currentScore < 98) return 98;
-                    if (currentScore < 99) return 99;
-                    return 99;
-                } else if (subjectId === 'math') {
-                    if (currentScore < 50) return 70;
-                    if (currentScore < 60) return 75;
-                    if (currentScore < 65) return 80;
-                    if (currentScore < 70) return 85;
-                    if (currentScore < 75) return 90;
-                    if (currentScore < 80) return 94;
-                    if (currentScore < 85) return 96;
-                    if (currentScore < 90) return 98;
-                    return 100;
-                } else if (subjectId === 'english') {
-                    if (currentScore < 50) return 65;
-                    if (currentScore < 60) return 75;
-                    if (currentScore < 65) return 78;
-                    if (currentScore < 70) return 80;
-                    if (currentScore < 75) return 85;
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 85) return 95;
-                    if (currentScore < 90) return 96;
-                    if (currentScore < 95) return 97;
-                    if (currentScore < 98) return 99;
-                    return 100;
-                }
-            } else if (totalScore === 120) {
-                if (subjectId === 'chinese') {
-                    if (currentScore < 60) return 72;
-                    if (currentScore < 70) return 80;
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 90) return 100;
-                    if (currentScore < 100) return 110;
-                    if (currentScore < 110) return 115;
-                    if (currentScore < 115) return 116;
-                    if (currentScore < 118) return 118;
-                    if (currentScore < 120) return 119;
-                    return 119;
-                } else if (subjectId === 'math') {
-                    if (currentScore < 60) return 75;
-                    if (currentScore < 70) return 80;
-                    if (currentScore < 75) return 88;
-                    if (currentScore < 80) return 95;
-                    if (currentScore < 85) return 98;
-                    if (currentScore < 90) return 105;
-                    if (currentScore < 95) return 110;
-                    if (currentScore < 100) return 115;
-                    if (currentScore < 105) return 116;
-                    if (currentScore < 110) return 118;
-                    return 120;
-                } else if (subjectId === 'english') {
-                    if (currentScore < 60) return 75;
-                    if (currentScore < 70) return 80;
-                    if (currentScore < 75) return 85;
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 85) return 95;
-                    if (currentScore < 90) return 100;
-                    if (currentScore < 95) return 105;
-                    if (currentScore < 100) return 110;
-                    if (currentScore < 105) return 114;
-                    if (currentScore < 110) return 116;
-                    if (currentScore < 115) return 118;
-                    if (currentScore < 118) return 119;
-                    return 120;
-                }
-            } else { // 默认150分
-                if (subjectId === 'chinese') {
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 90) return 100;
-                    if (currentScore < 100) return 110;
-                    if (currentScore < 110) return 120;
-                    if (currentScore < 120) return 130;
-                    if (currentScore < 130) return 140;
-                    if (currentScore < 140) return 145;
-                    if (currentScore < 145) return 146;
-                    if (currentScore < 148) return 148;
-                    if (currentScore < 150) return 149;
-                    return 149;
-                } else if (subjectId === 'math') {
-                    if (currentScore < 70) return 95;
-                    if (currentScore < 80) return 100;
-                    if (currentScore < 90) return 105;
-                    if (currentScore < 100) return 115;
-                    if (currentScore < 105) return 120;
-                    if (currentScore < 110) return 125;
-                    if (currentScore < 115) return 130;
-                    if (currentScore < 120) return 135;
-                    if (currentScore < 125) return 140;
-                    if (currentScore < 130) return 145;
-                    if (currentScore < 135) return 146;
-                    if (currentScore < 140) return 148;
-                    return 150;
-                } else if (subjectId === 'english') {
-                    if (currentScore < 70) return 85;
-                    if (currentScore < 80) return 90;
-                    if (currentScore < 90) return 100;
-                    if (currentScore < 100) return 110;
-                    if (currentScore < 105) return 115;
-                    if (currentScore < 110) return 120;
-                    if (currentScore < 115) return 125;
-                    if (currentScore < 120) return 130;
-                    if (currentScore < 125) return 135;
-                    if (currentScore < 130) return 140;
-                    if (currentScore < 135) return 145;
-                    if (currentScore < 140) return 146;
-                    if (currentScore < 145) return 148;
-                    if (currentScore < 148) return 149;
-                    return 150;
-                }
-            }
-            return '';
+            container.innerHTML = positioningHTML;
         }
 
         function generateSchoolsReport() {
@@ -1567,6 +1372,243 @@
             container.innerHTML = tableHTML;
         }
 
+        function generateSubjectsReport() {
+            const container = document.getElementById('reportSubjects');
+            container.innerHTML = '';
+            
+            const subjectsData = [
+                { id: 'chinese', name: '语文' },
+                { id: 'math', name: '数学' },
+                { id: 'english', name: '外语' },
+                { id: 'politics', name: '道德与法治' },
+                { id: 'history', name: '历史' },
+                { id: 'geography', name: '地理' },
+                { id: 'physics', name: '物理' },
+                { id: 'biology', name: '生物' },
+                { id: 'chemistry', name: '化学' }
+            ];
+            
+            const subjectsAnalysis = document.createElement('div');
+            subjectsAnalysis.className = 'subjects-analysis';
+            
+            let hasSubjectData = false;
+            
+            subjectsData.forEach(subject => {
+                const score = parseFloat(document.getElementById('subject-' + subject.id).value);
+                if (score && score > 0) {
+                    hasSubjectData = true;
+                    const advice = getSubjectAdvice(subject.id, score);
+                    let improvementTarget = '';
+                    
+                    // 为语数英三科添加提升目标
+                    if (subject.id === 'english' || subject.id === 'math' || subject.id === 'chinese') {
+                        // 获取该科目的满分，如果没有填写则默认150
+                        let totalScore = parseFloat(document.getElementById('subject-' + subject.id + '-total').value);
+                        if (!totalScore || totalScore <= 0) {
+                            totalScore = 150;
+                        }
+                        
+                        // 计算目标分数
+                        let targetScore = 0;
+                        
+                        if (subject.id === 'chinese') {
+                            // 语文目标分数计算
+                            if (totalScore === 100) {
+                                if (score >= 0 && score < 60) targetScore = 70;
+                                else if (score >= 60 && score < 70) targetScore = 80;
+                                else if (score >= 70 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 90) targetScore = 95;
+                                else if (score >= 90 && score < 95) targetScore = 96;
+                                else if (score >= 95 && score < 98) targetScore = 98;
+                                else if (score >= 98 && score < 99) targetScore = 99;
+                                else targetScore = 100;
+                            } else if (totalScore === 120) {
+                                if (score >= 0 && score < 60) targetScore = 72;
+                                else if (score >= 60 && score < 70) targetScore = 80;
+                                else if (score >= 70 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 90) targetScore = 100;
+                                else if (score >= 90 && score < 100) targetScore = 110;
+                                else if (score >= 100 && score < 110) targetScore = 115;
+                                else if (score >= 110 && score < 115) targetScore = 116;
+                                else if (score >= 115 && score < 118) targetScore = 118;
+                                else if (score >= 118 && score < 120) targetScore = 119;
+                                else targetScore = 120;
+                            } else {
+                                // 满分150或其他情况
+                                if (score >= 0 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 90) targetScore = 100;
+                                else if (score >= 90 && score < 100) targetScore = 110;
+                                else if (score >= 100 && score < 110) targetScore = 120;
+                                else if (score >= 110 && score < 120) targetScore = 130;
+                                else if (score >= 120 && score < 130) targetScore = 140;
+                                else if (score >= 130 && score < 140) targetScore = 145;
+                                else if (score >= 140 && score < 145) targetScore = 146;
+                                else if (score >= 145 && score < 148) targetScore = 148;
+                                else if (score >= 148 && score < 150) targetScore = 149;
+                                else targetScore = 150;
+                            }
+                        } else if (subject.id === 'math') {
+                            // 数学目标分数计算
+                            if (totalScore === 100) {
+                                if (score >= 0 && score < 50) targetScore = 70;
+                                else if (score >= 50 && score < 60) targetScore = 75;
+                                else if (score >= 60 && score < 65) targetScore = 80;
+                                else if (score >= 65 && score < 70) targetScore = 85;
+                                else if (score >= 70 && score < 75) targetScore = 90;
+                                else if (score >= 75 && score < 80) targetScore = 94;
+                                else if (score >= 80 && score < 85) targetScore = 96;
+                                else if (score >= 85 && score < 90) targetScore = 98;
+                                else targetScore = 100;
+                            } else if (totalScore === 120) {
+                                if (score >= 0 && score < 60) targetScore = 75;
+                                else if (score >= 60 && score < 70) targetScore = 80;
+                                else if (score >= 70 && score < 75) targetScore = 88;
+                                else if (score >= 75 && score < 80) targetScore = 95;
+                                else if (score >= 80 && score < 85) targetScore = 98;
+                                else if (score >= 85 && score < 90) targetScore = 105;
+                                else if (score >= 90 && score < 95) targetScore = 110;
+                                else if (score >= 95 && score < 100) targetScore = 115;
+                                else if (score >= 100 && score < 105) targetScore = 116;
+                                else if (score >= 105 && score < 110) targetScore = 118;
+                                else targetScore = 120;
+                            } else {
+                                // 满分150或其他情况
+                                if (score >= 0 && score < 70) targetScore = 95;
+                                else if (score >= 70 && score < 80) targetScore = 100;
+                                else if (score >= 80 && score < 90) targetScore = 105;
+                                else if (score >= 90 && score < 100) targetScore = 115;
+                                else if (score >= 100 && score < 105) targetScore = 120;
+                                else if (score >= 105 && score < 110) targetScore = 125;
+                                else if (score >= 110 && score < 115) targetScore = 130;
+                                else if (score >= 115 && score < 120) targetScore = 135;
+                                else if (score >= 120 && score < 125) targetScore = 140;
+                                else if (score >= 125 && score < 130) targetScore = 145;
+                                else if (score >= 130 && score < 135) targetScore = 146;
+                                else if (score >= 135 && score < 140) targetScore = 148;
+                                else targetScore = 150;
+                            }
+                        } else if (subject.id === 'english') {
+                            // 外语目标分数计算
+                            if (totalScore === 100) {
+                                if (score >= 0 && score < 50) targetScore = 65;
+                                else if (score >= 50 && score < 60) targetScore = 75;
+                                else if (score >= 60 && score < 65) targetScore = 78;
+                                else if (score >= 65 && score < 70) targetScore = 80;
+                                else if (score >= 70 && score < 75) targetScore = 85;
+                                else if (score >= 75 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 85) targetScore = 95;
+                                else if (score >= 85 && score < 90) targetScore = 96;
+                                else if (score >= 90 && score < 95) targetScore = 97;
+                                else if (score >= 95 && score < 98) targetScore = 99;
+                                else if (score >= 98 && score < 99) targetScore = 100;
+                                else targetScore = 100;
+                            } else if (totalScore === 120) {
+                                if (score >= 0 && score < 60) targetScore = 75;
+                                else if (score >= 60 && score < 70) targetScore = 80;
+                                else if (score >= 70 && score < 75) targetScore = 85;
+                                else if (score >= 75 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 85) targetScore = 95;
+                                else if (score >= 85 && score < 90) targetScore = 100;
+                                else if (score >= 90 && score < 95) targetScore = 105;
+                                else if (score >= 95 && score < 100) targetScore = 110;
+                                else if (score >= 100 && score < 105) targetScore = 114;
+                                else if (score >= 105 && score < 110) targetScore = 116;
+                                else if (score >= 110 && score < 115) targetScore = 118;
+                                else if (score >= 115 && score < 118) targetScore = 119;
+                                else targetScore = 120;
+                            } else {
+                                // 满分150或其他情况
+                                if (score >= 0 && score < 70) targetScore = 85;
+                                else if (score >= 70 && score < 80) targetScore = 90;
+                                else if (score >= 80 && score < 90) targetScore = 100;
+                                else if (score >= 90 && score < 100) targetScore = 110;
+                                else if (score >= 100 && score < 105) targetScore = 115;
+                                else if (score >= 105 && score < 110) targetScore = 120;
+                                else if (score >= 110 && score < 115) targetScore = 125;
+                                else if (score >= 115 && score < 120) targetScore = 130;
+                                else if (score >= 120 && score < 125) targetScore = 135;
+                                else if (score >= 125 && score < 130) targetScore = 140;
+                                else if (score >= 130 && score < 135) targetScore = 145;
+                                else if (score >= 135 && score < 140) targetScore = 146;
+                                else if (score >= 140 && score < 145) targetScore = 148;
+                                else if (score >= 145 && score < 148) targetScore = 149;
+                                else if (score >= 148 && score < 150) targetScore = 150;
+                                else targetScore = 150;
+                            }
+                        }
+                        
+                        // 确保目标分数不超过满分
+                        targetScore = Math.min(targetScore, totalScore);
+                        
+                        // 根据科目生成不同的提升建议
+                        let adviceText = '';
+                        if (subject.id === 'english') {
+                            adviceText = `
+                                <p>1. 跟随专业老师系统学习阅读理解解题思路和技巧,提升做题正确率和效率;</p>
+                                <p>2. 通过系统学习长难句的拆分、答案句的标记识别主次信息，获得精准锁定答案线索的能力，基本达到60-70%的准确率。</p>
+                            `;
+                        } else if (subject.id === 'math') {
+                            adviceText = `
+                                <p>1. 回归课本，落实好基本定义；</p>
+                                <p>2. 结合相似图形，理解同角的三角函数的值与图形边长的关系（回归课本），理解互余角的三角函数值的关系；</p>
+                                <p>3. 多练习解三角形的基础题，只有基础题会做了，才会解决更难的图形计算问题。</p>
+                            `;
+                        } else if (subject.id === 'chinese') {
+                            adviceText = `
+                                <p>1. 熟悉诗歌特点，向老师请教一些解读诗歌的技巧，运用有效方法学会感知诗词大意</p>
+                                <p>2. 拓展课外诗词阅读量，尤其是多去练习和钻研一些经典篇目</p>
+                                <p>3. 阅读老师给到的补充资料，增加文学和文化常识积累</p>
+                            `;
+                        }
+                        
+                        improvementTarget = `
+                            <div class="improvement-target">
+                                <h4>提升目标</h4>
+                                <div class="target-scores">
+                                    <span>当前分数：${score}分</span>
+                                    <span>目标分数：${targetScore}分</span>
+                                </div>
+                                ${adviceText}
+                            </div>
+                        `;
+                    }
+                    
+                    const subjectCard = document.createElement('div');
+                    subjectCard.className = 'subject-card';
+                    subjectCard.innerHTML = `
+                        <div class="subject-header">
+                            <span class="subject-name">${subject.name}</span>
+                            <span class="subject-score">${score}分</span>
+                        </div>
+                        <div class="subject-advice">${advice}</div>
+                        ${improvementTarget}
+                    `;
+                    subjectsAnalysis.appendChild(subjectCard);
+                }
+            });
+            
+            if (hasSubjectData) {
+                container.appendChild(subjectsAnalysis);
+            }
+            
+            return hasSubjectData;
+        }
+
+        function getSubjectAdvice(subjectId, score) {
+            const advice = subjectAdvice[subjectId];
+            if (!advice) return '';
+            
+            // 假设满分100分，根据得分率给出建议
+            const rate = score / 100;
+            if (rate >= 0.85) {
+                return advice.high;
+            } else if (rate >= 0.65) {
+                return advice.medium;
+            } else {
+                return advice.low;
+            }
+        }
+
         function generateEvaluation(percentage) {
             const percentageValue = parseFloat(percentage);
             const evaluationCard = document.getElementById('evaluationCard');
@@ -1598,18 +1640,21 @@
                     1. 重点高中作为冲刺目标，同时确保普通高中的保底选择<br>
                     2. 分析薄弱科目，在最后阶段有针对性地提升<br>
                     3. 保持稳定的心态，正常发挥即可取得好成绩<br>
-                    4. 关注目标学校的录取分数线，合理填报志愿
+                    4. 多了解各高中的录取分数线和招生政策，合理填报志愿<br>
+                    5. 可以考虑参加目标高中的自主招生或特长生考试
                 `;
             } else {
-                resultElement.textContent = '建议努力提升成绩';
+                resultElement.textContent = '需要全力冲刺';
                 resultElement.classList.add('needs-improvement');
                 adviceElement.innerHTML = `
-                    <strong>📚 努力！</strong>您的成绩还有提升空间，需要更加努力。<br><br>
+                    <strong>📚 努力！</strong>您的成绩还有提升空间，需要全力冲刺。<br><br>
                     <strong>建议：</strong><br>
-                    1. 制定合理的学习计划，重点提升薄弱科目<br>
-                    2. 寻求老师和同学的帮助，解决学习中的问题<br>
-                    3. 保持积极的学习态度，相信自己可以进步<br>
-                    4. 关注职业高中和中专的优质专业，作为备选方案
+                    1. 制定详细的复习计划，重点突破薄弱科目<br>
+                    2. 回归课本，夯实基础知识，确保基础题不丢分<br>
+                    3. 多做真题和模拟题，熟悉考试题型和答题技巧<br>
+                    4. 寻求老师或同学的帮助，解决学习中的疑难问题<br>
+                    5. 保持积极心态，相信通过努力可以提升成绩<br>
+                    6. 同时关注普通高中的招生信息，做好多手准备
                 `;
             }
         }
@@ -1641,7 +1686,7 @@
                 tempContainer.style.width = '900px';
                 tempContainer.style.maxWidth = '900px';
                 tempContainer.style.backgroundColor = '#ffffff';
-                tempContainer.style.borderRadius = '8px';
+                tempContainer.style.borderRadius = '20px';
                 tempContainer.style.overflow = 'hidden';
             }
             
