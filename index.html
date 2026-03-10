@@ -1121,15 +1121,24 @@
             
             if (province && city) {
                 try {
-                    // 从网络API获取学校数据
-                    const response = await fetch(`https://api.example.com/schools?province=${encodeURIComponent(province)}&city=${encodeURIComponent(city)}`);
-                    const data = await response.json();
+                    // 模拟网络API数据，实际部署时替换为真实API
+                    // 这里使用模拟数据来测试功能
+                    const mockSchools = [
+                        { name: '北京市第一中学', undergraduate: '98%', rate211: '75%', rate985: '45%', teachers: '高级教师120人' },
+                        { name: '北京市第二中学', undergraduate: '95%', rate211: '68%', rate985: '38%', teachers: '高级教师105人' },
+                        { name: '北京市第三中学', undergraduate: '92%', rate211: '60%', rate985: '32%', teachers: '高级教师98人' },
+                        { name: '北京市第四中学', undergraduate: '99%', rate211: '80%', rate985: '50%', teachers: '高级教师130人' },
+                        { name: '北京市第五中学', undergraduate: '90%', rate211: '55%', rate985: '28%', teachers: '高级教师90人' },
+                        { name: '北京市第六中学', undergraduate: '88%', rate211: '50%', rate985: '25%', teachers: '高级教师85人' },
+                        { name: '北京市第七中学', undergraduate: '85%', rate211: '45%', rate985: '20%', teachers: '高级教师80人' },
+                        { name: '北京市第八中学', undergraduate: '94%', rate211: '65%', rate985: '35%', teachers: '高级教师100人' },
+                        { name: '北京市第九中学', undergraduate: '86%', rate211: '48%', rate985: '22%', teachers: '高级教师82人' },
+                        { name: '北京市第十中学', undergraduate: '83%', rate211: '42%', rate985: '18%', teachers: '高级教师78人' }
+                    ];
                     
-                    if (data.success && data.schools) {
-                        selectedSchools = data.schools;
-                    } else {
-                        selectedSchools = [];
-                    }
+                    // 模拟API响应
+                    selectedSchools = mockSchools;
+                    console.log('获取学校数据成功:', selectedSchools);
                 } catch (error) {
                     console.error('获取学校数据失败:', error);
                     selectedSchools = [];
@@ -1190,13 +1199,14 @@
             
             // 先获取最新的学校数据
             await updateSchools();
+            console.log('学校数据:', selectedSchools);
             
             const percentage = ((parseFloat(score) / parseFloat(totalScore)) * 100).toFixed(1);
             
             document.getElementById('reportName').textContent = studentName || '未填写';
             document.getElementById('reportCurrentSchool').textContent = currentSchool || '未填写';
-            document.getElementById('reportProvince').textContent = province;
-            document.getElementById('reportCity').textContent = city;
+            document.getElementById('reportProvince').textContent = province || '未选择';
+            document.getElementById('reportCity').textContent = city || '未选择';
             document.getElementById('reportScore').textContent = score + ' / ' + totalScore;
             document.getElementById('reportPercentage').textContent = percentage + '%';
             
